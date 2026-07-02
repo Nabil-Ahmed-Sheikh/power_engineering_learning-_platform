@@ -71,3 +71,13 @@ export function bestQuizScore(topicSlug: string): QuizAttempt | undefined {
     .filter((a) => a.topicSlug === topicSlug)
     .sort((a, b) => b.score / b.total - a.score / a.total)[0];
 }
+
+/** For use with useSyncExternalStore, so localStorage-backed reads stay hydration-safe. */
+export function subscribeToProgress(callback: () => void): () => void {
+  window.addEventListener("pel:progress-updated", callback);
+  window.addEventListener("storage", callback);
+  return () => {
+    window.removeEventListener("pel:progress-updated", callback);
+    window.removeEventListener("storage", callback);
+  };
+}

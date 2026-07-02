@@ -1,20 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { getCompletedLessons } from "@/lib/progress";
+import { useCallback, useSyncExternalStore } from "react";
+import { getCompletedLessons, subscribeToProgress } from "@/lib/progress";
 
 export default function LessonCompleteBadge({ lessonSlugs }: { lessonSlugs: string[] }) {
-  const [done, setDone] = useState(0);
-
-  useEffect(() => {
-    const refresh = () => {
-      const completed = getCompletedLessons();
-      setDone(lessonSlugs.filter((s) => completed.has(s)).length);
-    };
-    refresh();
-    window.addEventListener("pel:progress-updated", refresh);
-    return () => window.removeEventListener("pel:progress-updated", refresh);
+  const getSnapshot = useCallback(() => {
+    const completed = getCompletedLessons();
+    return lessonSlugs.filter((s) => completed.has(s)).length;
   }, [lessonSlugs]);
+
+  const done = useSyncExternalStore(subscribeToProgress, getSnapshot, () => 0);
 
   if (lessonSlugs.length === 0) return null;
 

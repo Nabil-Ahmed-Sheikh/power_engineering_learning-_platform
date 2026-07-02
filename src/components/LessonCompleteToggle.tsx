@@ -1,18 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { isLessonComplete, toggleLessonComplete } from "@/lib/progress";
+import { useSyncExternalStore } from "react";
+import { isLessonComplete, subscribeToProgress, toggleLessonComplete } from "@/lib/progress";
 
 export default function LessonCompleteToggle({ slug }: { slug: string }) {
-  const [done, setDone] = useState(false);
-
-  useEffect(() => {
-    setDone(isLessonComplete(slug));
-  }, [slug]);
+  const done = useSyncExternalStore(
+    subscribeToProgress,
+    () => isLessonComplete(slug),
+    () => false
+  );
 
   return (
     <button
-      onClick={() => setDone(toggleLessonComplete(slug).has(slug))}
+      onClick={() => toggleLessonComplete(slug)}
       className={`rounded-md px-4 py-2 text-sm font-semibold transition-colors ${
         done
           ? "bg-emerald-600 text-white hover:bg-emerald-700"

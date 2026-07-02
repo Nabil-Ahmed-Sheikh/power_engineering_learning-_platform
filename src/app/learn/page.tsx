@@ -21,7 +21,7 @@ export default function LearnPage() {
     <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
       <h1 className="text-3xl font-bold tracking-tight">Learn</h1>
       <p className="mt-2 max-w-2xl text-foreground/70">
-        Core power systems theory, organized the way it's actually used on the
+        Core power systems theory, organized the way it&apos;s actually used on the
         job — from AC fundamentals through protection and renewable
         integration.
       </p>

@@ -1,0 +1,797 @@
+import type { QuizQuestion } from "./types";
+
+export const quizQuestions: QuizQuestion[] = [
+  // ---- ac-circuit-fundamentals-phasors (3) ----
+  {
+    id: "q-001",
+    topicSlug: "ac-circuit-fundamentals-phasors",
+    question: "In a balanced wye-connected three-phase source, if the line-to-neutral voltage is 7,970 V, what is the line-to-line voltage?",
+    options: ["7,970 V", "13,800 V", "4,600 V", "23,900 V"],
+    correctIndex: 1,
+    explanation: "For a wye connection, V_LL = √3 × V_LN = 1.732 × 7,970 ≈ 13,800 V.",
+  },
+  {
+    id: "q-002",
+    topicSlug: "ac-circuit-fundamentals-phasors",
+    question: "What is the impedance of a pure inductor with reactance X_L in phasor/complex form?",
+    options: ["X_L", "-jX_L", "jX_L", "1/X_L"],
+    correctIndex: 2,
+    explanation: "An inductor's impedance is Z_L = jωL = jX_L; the positive imaginary sign indicates current lags voltage by 90°.",
+  },
+  {
+    id: "q-003",
+    topicSlug: "ac-circuit-fundamentals-phasors",
+    question: "Why does a delta-connected three-phase load have line current greater than phase current?",
+    options: [
+      "Because delta windings share a common neutral",
+      "Because line current is the phasor difference of two phase currents, giving a factor of √3",
+      "Because delta connections always operate at higher power factor",
+      "Because delta windings have no reactance",
+    ],
+    correctIndex: 1,
+    explanation: "In a delta connection, each line current is the phasor difference between two phase currents 120° apart, which works out to √3 times the phase current magnitude.",
+  },
+
+  // ---- per-unit-system (3) ----
+  {
+    id: "q-004",
+    topicSlug: "per-unit-system",
+    question: "A generator has X\" = 0.20 p.u. on its own base of 100 MVA, 13.8 kV. What is X\" in per-unit on a new system base of 200 MVA at the same voltage?",
+    options: ["0.10 p.u.", "0.20 p.u.", "0.40 p.u.", "0.80 p.u."],
+    correctIndex: 2,
+    explanation: "Z_pu,new = Z_pu,old × (S_base,new/S_base,old) = 0.20 × (200/100) = 0.40 p.u.; voltage base is unchanged so that ratio term is 1.",
+  },
+  {
+    id: "q-005",
+    topicSlug: "per-unit-system",
+    question: "Which formula correctly defines base impedance in a per-unit system?",
+    options: ["Z_base = S_base / V_base", "Z_base = V_base / S_base", "Z_base = V_base² / S_base", "Z_base = S_base² / V_base"],
+    correctIndex: 2,
+    explanation: "Base impedance is Z_base = V_base²/S_base, derived from Ohm's law using base voltage and base current (I_base = S_base/(√3·V_base) for three-phase systems).",
+  },
+  {
+    id: "q-006",
+    topicSlug: "per-unit-system",
+    question: "Why does the per-unit system eliminate the transformer turns ratio from network calculations?",
+    options: [
+      "Because transformers have zero impedance in per-unit",
+      "Because choosing base voltages in the transformer's nominal ratio makes per-unit impedance equal on both sides",
+      "Because per-unit values are always equal to 1.0 at rated conditions",
+      "Because turns ratio only matters for three-phase transformers",
+    ],
+    correctIndex: 1,
+    explanation: "When base voltages on each side of a transformer are chosen in the same ratio as its nominal turns ratio, per-unit impedance comes out identical on either side, so the turns ratio no longer needs to be tracked separately.",
+  },
+
+  // ---- real-reactive-apparent-power (3) ----
+  {
+    id: "q-007",
+    topicSlug: "real-reactive-apparent-power",
+    question: "A load draws 500 kW at a lagging power factor of 0.8. What is the apparent power?",
+    options: ["400 kVA", "500 kVA", "625 kVA", "800 kVA"],
+    correctIndex: 2,
+    explanation: "S = P/pf = 500/0.8 = 625 kVA.",
+  },
+  {
+    id: "q-008",
+    topicSlug: "real-reactive-apparent-power",
+    question: "What does a leading power factor typically indicate about a load or source?",
+    options: [
+      "The load is purely resistive",
+      "The load or source is capacitive, or a synchronous machine is overexcited",
+      "The load or source is inductive and absorbing reactive power",
+      "The system frequency is above nominal",
+    ],
+    correctIndex: 1,
+    explanation: "Leading power factor means current leads voltage, characteristic of capacitive loads or an overexcited synchronous machine supplying reactive power.",
+  },
+  {
+    id: "q-009",
+    topicSlug: "real-reactive-apparent-power",
+    question: "Why is voltage drop along a transmission line dominated by reactive power flow rather than real power flow?",
+    options: [
+      "Because transmission lines have negligible resistance and are highly inductive, so the Q·X term dominates the drop",
+      "Because real power never causes voltage drop on any line",
+      "Because reactive power always flows opposite to real power",
+      "Because voltage drop depends only on current magnitude, not power type",
+    ],
+    correctIndex: 0,
+    explanation: "Since X >> R for transmission lines, the approximate voltage drop ΔV ≈ (P·R + Q·X)/V is dominated by the Q·X term, making reactive power flow the primary driver of voltage drop.",
+  },
+
+  // ---- symmetrical-components (3) ----
+  {
+    id: "q-010",
+    topicSlug: "symmetrical-components",
+    question: "In symmetrical components, what characterizes negative sequence phasors?",
+    options: [
+      "Equal magnitude, in phase with each other",
+      "Equal magnitude, 120° apart, reversed (a-c-b) rotation",
+      "Equal magnitude, 120° apart, normal (a-b-c) rotation",
+      "Unequal magnitude, no fixed phase relationship",
+    ],
+    correctIndex: 1,
+    explanation: "Negative sequence is a balanced set of equal-magnitude phasors 120° apart but rotating in the reverse (a-c-b) sequence compared to normal system rotation.",
+  },
+  {
+    id: "q-011",
+    topicSlug: "symmetrical-components",
+    question: "For a bolted single line-to-ground fault, how are the positive, negative, and zero sequence networks connected?",
+    options: ["In parallel", "In series", "Positive in series with negative‖zero", "They are not connected"],
+    correctIndex: 1,
+    explanation: "The SLG fault boundary conditions force all three sequence networks into a series connection, giving I_fault = 3E/(Z1+Z2+Z0).",
+  },
+  {
+    id: "q-012",
+    topicSlug: "symmetrical-components",
+    question: "Why can zero-sequence current not flow on an ungrounded delta-connected system?",
+    options: [
+      "Because delta systems have no impedance",
+      "Because zero-sequence current requires a return path to a neutral/ground, which an ungrounded or delta system doesn't provide",
+      "Because zero-sequence current only exists in wye systems by definition",
+      "Because delta systems cancel all sequence currents",
+    ],
+    correctIndex: 1,
+    explanation: "Zero-sequence current is in-phase across all three phases and does not sum to zero at a neutral point, so it requires an explicit return path (grounded neutral or earth); an ungrounded/delta system provides none.",
+  },
+
+  // ---- synchronous-generators-excitation (3) ----
+  {
+    id: "q-013",
+    topicSlug: "synchronous-generators-excitation",
+    question: "A generator has 4 poles and must produce 60 Hz output. What is its synchronous speed?",
+    options: ["3600 RPM", "1800 RPM", "1200 RPM", "900 RPM"],
+    correctIndex: 1,
+    explanation: "N = 120f/p = 120×60/4 = 1800 RPM.",
+  },
+  {
+    id: "q-014",
+    topicSlug: "synchronous-generators-excitation",
+    question: "Which generator reactance value is used for close-in fault current and circuit breaker momentary rating calculations?",
+    options: ["Synchronous reactance Xd", "Transient reactance Xd'", "Subtransient reactance Xd\"", "Quadrature-axis reactance Xq"],
+    correctIndex: 2,
+    explanation: "Subtransient reactance Xd\" applies in the first few cycles after a disturbance, giving the highest fault current, which is why it's used for close-in fault duty and breaker momentary ratings.",
+  },
+  {
+    id: "q-015",
+    topicSlug: "synchronous-generators-excitation",
+    question: "What is the primary function of a Power System Stabilizer (PSS)?",
+    options: [
+      "To regulate steady-state terminal voltage",
+      "To damp low-frequency electromechanical oscillations by modulating excitation",
+      "To limit stator current during faults",
+      "To synchronize the generator to the grid before closing the breaker",
+    ],
+    correctIndex: 1,
+    explanation: "A PSS injects a supplementary stabilizing signal (from speed or power deviation) into the AVR to damp electromechanical oscillations, typically in the 0.2–2 Hz range.",
+  },
+
+  // ---- power-transformers (3) ----
+  {
+    id: "q-016",
+    topicSlug: "power-transformers",
+    question: "In the vector group Dyn11, what does the '11' indicate?",
+    options: [
+      "The transformer has 11 taps",
+      "The low-voltage winding phasor is displaced 11 × 30° = 330° from the high-voltage reference",
+      "The transformer is rated 11 kV",
+      "There are 11% impedance losses",
+    ],
+    correctIndex: 1,
+    explanation: "The trailing number in vector group notation is clock-hour notation in 30° increments describing the LV winding's phase displacement from the HV reference.",
+  },
+  {
+    id: "q-017",
+    topicSlug: "power-transformers",
+    question: "Why does a delta winding on a transformer trap zero-sequence current?",
+    options: [
+      "Because delta windings have infinite impedance",
+      "Because zero-sequence voltages induced in the delta winding drive a circulating current confined within the closed delta loop",
+      "Because delta windings are always ungrounded",
+      "Because zero-sequence current cannot exist at 60 Hz",
+    ],
+    correctIndex: 1,
+    explanation: "A delta winding forms a closed loop; zero-sequence (in-phase) voltages induced in it drive a circulating current that stays within the delta and never appears on the delta side's line terminals.",
+  },
+  {
+    id: "q-018",
+    topicSlug: "power-transformers",
+    question: "What is the main disadvantage of an autotransformer compared to a two-winding transformer?",
+    options: [
+      "Higher cost and losses for the same rating",
+      "Lack of galvanic isolation between high and low voltage sides",
+      "Inability to include tap changers",
+      "Inability to handle three-phase power",
+    ],
+    correctIndex: 1,
+    explanation: "Autotransformers share a winding electrically between the high and low sides, so they lack galvanic isolation, requiring careful attention to overvoltage transfer and grounding design.",
+  },
+
+  // ---- transmission-line-parameters (3) ----
+  {
+    id: "q-019",
+    topicSlug: "transmission-line-parameters",
+    question: "Which line model is appropriate for a 200 km (about 125 mile) transmission line?",
+    options: ["Series impedance only (short line model)", "Nominal-π (medium line model)", "Hyperbolic-corrected equivalent-π (long line model)", "No model is needed for AC lines"],
+    correctIndex: 1,
+    explanation: "Lines between roughly 80–250 km (50–150 miles) are classified as medium length and modeled with the nominal-π model, lumping half the shunt admittance at each end.",
+  },
+  {
+    id: "q-020",
+    topicSlug: "transmission-line-parameters",
+    question: "What happens to receiving-end voltage on a long, lightly loaded transmission line, and what is this phenomenon called?",
+    options: [
+      "Voltage drops significantly; called voltage collapse",
+      "Voltage rises above sending-end voltage; called the Ferranti effect",
+      "Voltage stays exactly equal to sending-end voltage; called flat-voltage operation",
+      "Voltage oscillates uncontrollably; called subsynchronous resonance",
+    ],
+    correctIndex: 1,
+    explanation: "On a lightly loaded long line, capacitive charging current dominates over load current, causing receiving-end voltage to rise above sending-end voltage — the Ferranti effect.",
+  },
+  {
+    id: "q-021",
+    topicSlug: "transmission-line-parameters",
+    question: "What is Surge Impedance Loading (SIL)?",
+    options: [
+      "The maximum current a line can carry before thermal damage",
+      "The loading at which a line's shunt capacitive and series inductive reactive power exactly balance, giving a flat voltage profile",
+      "The loading at which a line experiences maximum losses",
+      "The rated voltage of the line",
+    ],
+    correctIndex: 1,
+    explanation: "SIL = V_LL²/Zc is the loading at which reactive power generated by shunt capacitance balances reactive power absorbed by series inductance, giving a flat voltage profile along the line.",
+  },
+
+  // ---- distribution-systems-equipment (3) ----
+  {
+    id: "q-022",
+    topicSlug: "distribution-systems-equipment",
+    question: "What is the primary advantage of a radial distribution topology?",
+    options: [
+      "Highest possible reliability",
+      "Simple, low-cost protection since fault current flows in only one direction",
+      "No need for voltage regulation equipment",
+      "Automatic restoration without any switching",
+    ],
+    correctIndex: 1,
+    explanation: "Radial systems are simple and cheap to protect because fault current only flows one direction through any given device, simplifying overcurrent coordination, though they leave downstream customers exposed to upstream outages.",
+  },
+  {
+    id: "q-023",
+    topicSlug: "distribution-systems-equipment",
+    question: "What is the key difference between fuse-saving and fuse-blowing recloser coordination philosophy?",
+    options: [
+      "Fuse-saving never uses fuses at all",
+      "Fuse-saving has the recloser try a fast trip first to clear temporary faults before the fuse blows, at the cost of a system-wide blink",
+      "Fuse-blowing always results in a longer outage than fuse-saving",
+      "There is no practical difference between the two",
+    ],
+    correctIndex: 1,
+    explanation: "Fuse-saving operates the recloser on a fast curve first to try to clear a temporary fault before the fuse blows (causing a brief feeder-wide blink); fuse-blowing lets the fuse operate first to minimize outage footprint at the cost of losing fuse-saving capability.",
+  },
+  {
+    id: "q-024",
+    topicSlug: "distribution-systems-equipment",
+    question: "What device counts fault interruptions from an upstream recloser and opens during its dead time, without itself being able to interrupt fault current?",
+    options: ["A network protector", "A sectionalizer", "A voltage regulator", "A surge arrester"],
+    correctIndex: 1,
+    explanation: "A sectionalizer counts recloser operations and opens during the recloser's open (dead) interval; it cannot interrupt fault current itself and relies on the recloser to do so.",
+  },
+
+  // ---- circuit-breakers-switchgear (2) ----
+  {
+    id: "q-025",
+    topicSlug: "circuit-breakers-switchgear",
+    question: "Which circuit breaker interrupting technology is dominant at transmission voltage levels (72 kV and above)?",
+    options: ["Vacuum circuit breakers", "SF6 circuit breakers", "Air circuit breakers", "Oil circuit breakers"],
+    correctIndex: 1,
+    explanation: "SF6 gas's excellent dielectric and arc-quenching properties make SF6 breakers dominant at transmission voltage; vacuum breakers dominate medium voltage instead.",
+  },
+  {
+    id: "q-026",
+    topicSlug: "circuit-breakers-switchgear",
+    question: "Which substation bus arrangement uses 1.5 breakers per circuit and allows any single breaker to be removed for maintenance without interrupting any circuit?",
+    options: ["Single bus", "Ring bus", "Breaker-and-a-half", "Main-and-transfer bus"],
+    correctIndex: 2,
+    explanation: "Breaker-and-a-half arrangements use three breakers shared between two adjacent circuits (1.5 per circuit), giving high reliability since any single breaker can be taken out for maintenance without interrupting service.",
+  },
+
+  // ---- load-flow-studies (3) ----
+  {
+    id: "q-027",
+    topicSlug: "load-flow-studies",
+    question: "At a PV (generator) bus in a load flow study, which two quantities are specified inputs?",
+    options: ["P and Q", "|V| and angle δ", "P and |V|", "Q and angle δ"],
+    correctIndex: 2,
+    explanation: "A PV bus has specified real power P and voltage magnitude |V|; reactive power Q and angle δ are solved for, subject to the generator's reactive capability limits.",
+  },
+  {
+    id: "q-028",
+    topicSlug: "load-flow-studies",
+    question: "Why does Newton-Raphson generally outperform Gauss-Seidel for large power flow studies?",
+    options: [
+      "Newton-Raphson requires no iteration at all",
+      "Newton-Raphson converges quadratically in a handful of iterations regardless of system size, while Gauss-Seidel converges linearly and slowly",
+      "Gauss-Seidel cannot represent PV buses",
+      "Newton-Raphson does not require a Ybus matrix",
+    ],
+    correctIndex: 1,
+    explanation: "Newton-Raphson's quadratic convergence typically needs only 3–5 iterations regardless of system size, while Gauss-Seidel's linear convergence can require tens to hundreds of iterations and becomes unreliable on large systems.",
+  },
+  {
+    id: "q-029",
+    topicSlug: "load-flow-studies",
+    question: "What does N-1 contingency analysis verify?",
+    options: [
+      "That the system can survive the loss of any single element without thermal overloads or voltage violations",
+      "That total generation exactly equals total load",
+      "That every bus operates at exactly 1.0 per unit voltage",
+      "That harmonic distortion stays below IEEE 519 limits",
+    ],
+    correctIndex: 0,
+    explanation: "N-1 contingency analysis removes each single network element in turn and re-solves load flow to confirm no remaining thermal or voltage violations occur — the standard transmission planning reliability criterion.",
+  },
+
+  // ---- short-circuit-fault-analysis (3) ----
+  {
+    id: "q-030",
+    topicSlug: "short-circuit-fault-analysis",
+    question: "At a bus, Z1 = Z2 = j0.10 p.u. and Z0 = j0.30 p.u., with pre-fault voltage 1.0 p.u. What is the three-phase fault current in per unit?",
+    options: ["3.0 p.u.", "6.0 p.u.", "10.0 p.u.", "20.0 p.u."],
+    correctIndex: 2,
+    explanation: "Three-phase fault current uses only the positive-sequence network: I3φ = E/Z1 = 1.0/0.10 = 10.0 p.u.",
+  },
+  {
+    id: "q-031",
+    topicSlug: "short-circuit-fault-analysis",
+    question: "Using the same impedances as above (Z1=Z2=j0.10, Z0=j0.30, E=1.0 p.u.), what is the single line-to-ground fault current?",
+    options: ["2.0 p.u.", "6.0 p.u.", "10.0 p.u.", "1.5 p.u."],
+    correctIndex: 1,
+    explanation: "ISLG = 3E/(Z1+Z2+Z0) = 3(1.0)/(0.10+0.10+0.30) = 3/0.50 = 6.0 p.u.",
+  },
+  {
+    id: "q-032",
+    topicSlug: "short-circuit-fault-analysis",
+    question: "Why do inverter-based resources (wind, solar, storage) contribute much lower fault current relative to rated output than synchronous generators?",
+    options: [
+      "They are always disconnected during faults",
+      "Their power electronics current-limit fault contribution to protect semiconductor devices, typically to about 1.1–1.5x rated current",
+      "They have no impedance at all, so they cannot contribute fault current by definition",
+      "Grid codes prohibit them from contributing any fault current",
+    ],
+    correctIndex: 1,
+    explanation: "Inverter-based resources are limited by their power electronics to protect semiconductor devices, typically capping fault contribution around 1.1–1.5 times rated current, unlike synchronous machines whose fault current is governed by physical reactances several times rated current.",
+  },
+
+  // ---- power-system-stability (3) ----
+  {
+    id: "q-033",
+    topicSlug: "power-system-stability",
+    question: "In the swing equation (2H/ωs)(d²δ/dt²) = Pm - Pe, what does H represent?",
+    options: [
+      "The machine's synchronous reactance",
+      "The inertia constant, in seconds, representing stored kinetic energy relative to rated MVA",
+      "The harmonic distortion factor",
+      "The machine's rated horsepower",
+    ],
+    correctIndex: 1,
+    explanation: "H is the inertia constant in seconds, the ratio of stored kinetic energy at rated speed to rated MVA; higher H means the rotor accelerates more slowly for a given power imbalance.",
+  },
+  {
+    id: "q-034",
+    topicSlug: "power-system-stability",
+    question: "According to the equal area criterion, what happens to the accelerating-energy area during a fault if the fault is cleared faster?",
+    options: [
+      "It increases, worsening stability",
+      "It decreases, improving the stability margin",
+      "It stays constant regardless of clearing time",
+      "It becomes negative",
+    ],
+    correctIndex: 1,
+    explanation: "Faster fault clearing shortens the period during which electrical power Pe is depressed below mechanical power Pm, directly reducing the accelerating-energy area and improving transient stability margin.",
+  },
+  {
+    id: "q-035",
+    topicSlug: "power-system-stability",
+    question: "What distinguishes voltage stability from rotor angle (transient) stability?",
+    options: [
+      "Voltage stability concerns whether buses can maintain acceptable voltage, especially under heavy loading, while rotor angle stability concerns whether machines stay in synchronism",
+      "They are the same phenomenon with different names",
+      "Voltage stability only applies to distribution systems",
+      "Rotor angle stability only matters for inverter-based resources",
+    ],
+    correctIndex: 0,
+    explanation: "Voltage stability concerns whether the system can sustain acceptable bus voltages (associated with the P-V nose curve and voltage collapse), a distinct failure mode from rotor angle stability, which concerns synchronous machines remaining in synchronism after a disturbance.",
+  },
+
+  // ---- economic-dispatch-unit-commitment (3) ----
+  {
+    id: "q-036",
+    topicSlug: "economic-dispatch-unit-commitment",
+    question: "What is the equal incremental cost criterion for unconstrained economic dispatch?",
+    options: [
+      "All units should produce the same total output",
+      "At the optimum, every committed, unconstrained unit's marginal cost equals the same system value λ",
+      "All units should have identical fuel cost curves",
+      "Total cost should be split equally among units",
+    ],
+    correctIndex: 1,
+    explanation: "The classic economic dispatch result is that every committed, unconstrained unit operates where its marginal (incremental) cost equals a common system marginal cost λ, subject to each unit's min/max limits.",
+  },
+  {
+    id: "q-037",
+    topicSlug: "economic-dispatch-unit-commitment",
+    question: "What makes unit commitment a fundamentally harder optimization problem than economic dispatch?",
+    options: [
+      "Unit commitment ignores fuel costs entirely",
+      "Unit commitment includes binary on/off decisions for each unit, making it a mixed-integer optimization problem",
+      "Unit commitment only considers a single time period",
+      "Unit commitment has no constraints at all",
+    ],
+    correctIndex: 1,
+    explanation: "Unlike the smooth, continuous economic dispatch problem, unit commitment includes each unit's binary on/off state as a decision variable across multiple time periods, making it a much harder mixed-integer optimization problem.",
+  },
+  {
+    id: "q-038",
+    topicSlug: "economic-dispatch-unit-commitment",
+    question: "What does Locational Marginal Pricing (LMP) reflect when a transmission constraint is binding?",
+    options: [
+      "The same price everywhere on the system regardless of constraints",
+      "The system marginal energy cost plus a congestion component reflecting the cost of relieving the binding constraint",
+      "Only the cost of the cheapest generator on the system",
+      "A fixed regulatory price unrelated to dispatch",
+    ],
+    correctIndex: 1,
+    explanation: "LMP decomposes into system marginal energy cost, a congestion component (cost of relieving whatever transmission constraint binds), and a loss component, so LMPs diverge by location when congestion binds.",
+  },
+
+  // ---- power-quality-harmonics (3) ----
+  {
+    id: "q-039",
+    topicSlug: "power-quality-harmonics",
+    question: "Why do triplen harmonics (3rd, 9th, 15th...) add up in the neutral conductor of a wye system rather than canceling?",
+    options: [
+      "Because they are zero-sequence in nature and in phase across all three phases",
+      "Because triplen harmonics only exist in delta systems",
+      "Because they have negative frequency",
+      "Because the neutral conductor amplifies all harmonics equally",
+    ],
+    correctIndex: 0,
+    explanation: "Triplen harmonics are zero-sequence, meaning they are in phase (not 120° apart) across all three phases, so they add arithmetically in the neutral rather than canceling as the fundamental does.",
+  },
+  {
+    id: "q-040",
+    topicSlug: "power-quality-harmonics",
+    question: "Under IEEE 519, what does the current distortion limit placed on a customer scale with?",
+    options: [
+      "The customer's total connected horsepower",
+      "The short-circuit ratio (ISC/IL) at the point of common coupling",
+      "The customer's monthly energy bill",
+      "The number of employees at the facility",
+    ],
+    correctIndex: 1,
+    explanation: "IEEE 519 current distortion limits scale with ISC/IL, the ratio of available short-circuit current to the customer's demand current, since a stiffer system can absorb more harmonic injection without excessive voltage distortion.",
+  },
+  {
+    id: "q-041",
+    topicSlug: "power-quality-harmonics",
+    question: "What is the risk of adding a shunt capacitor bank near a known harmonic source without checking resonant frequency?",
+    options: [
+      "The capacitor bank will immediately fail",
+      "Parallel resonance between the capacitor and system inductance can dramatically amplify a specific harmonic's voltage or current",
+      "It will reduce power factor to zero",
+      "It has no effect on harmonics whatsoever",
+    ],
+    correctIndex: 1,
+    explanation: "Capacitor banks can form a parallel resonant circuit with system inductance; if the resonant frequency coincides with a harmonic present from a nearby nonlinear load, that harmonic can be amplified well beyond the injected level.",
+  },
+
+  // ---- protective-relaying-fundamentals (3) ----
+  {
+    id: "q-042",
+    topicSlug: "protective-relaying-fundamentals",
+    question: "What ANSI device number denotes a differential relay?",
+    options: ["21", "27", "51", "87"],
+    correctIndex: 3,
+    explanation: "Device 87 denotes differential protection (e.g., 87T for transformer, 87B for bus, 87G for generator differential).",
+  },
+  {
+    id: "q-043",
+    topicSlug: "protective-relaying-fundamentals",
+    question: "What is the difference between dependability and security as reliability properties of a protection scheme?",
+    options: [
+      "They are the same concept with different names",
+      "Dependability is operating correctly when it should; security is not operating when it shouldn't",
+      "Dependability only applies to distance relays; security only applies to differential relays",
+      "Security refers to cybersecurity of the relay, unrelated to fault operation",
+    ],
+    correctIndex: 1,
+    explanation: "Dependability is the certainty a relay operates for faults within its zone; security is the certainty it does not operate for conditions outside its zone — a failure of either is a different type of misoperation.",
+  },
+  {
+    id: "q-044",
+    topicSlug: "protective-relaying-fundamentals",
+    question: "Why must CTs be sized with adequate saturation/accuracy class rather than using a generic standard CT?",
+    options: [
+      "CTs never affect relay performance",
+      "A saturated CT distorts the secondary current waveform, potentially causing a relay to under-measure fault current or misoperate",
+      "Generic CTs are always more accurate than sized ones",
+      "CT sizing only matters for metering, not protection",
+    ],
+    correctIndex: 1,
+    explanation: "A CT that saturates under heavy fault current distorts the secondary waveform, which can cause under-measurement of fault current or misoperation, so CT accuracy/saturation voltage must be sized for the expected fault duty.",
+  },
+
+  // ---- overcurrent-distance-protection (3) ----
+  {
+    id: "q-045",
+    topicSlug: "overcurrent-distance-protection",
+    question: "Why is distance protection preferred over simple overcurrent protection for transmission lines with sources at both ends?",
+    options: [
+      "Distance protection is cheaper to install",
+      "Apparent impedance (V/I) scales with distance to the fault largely independent of fault current magnitude or source strength",
+      "Distance protection does not require CTs or VTs",
+      "Overcurrent protection cannot detect any faults on transmission lines",
+    ],
+    correctIndex: 1,
+    explanation: "Distance relays measure apparent impedance Z=V/I, which is proportional to distance to the fault regardless of varying fault current magnitude, making it robust to changing system configuration in a way overcurrent protection is not.",
+  },
+  {
+    id: "q-046",
+    topicSlug: "overcurrent-distance-protection",
+    question: "Why is Zone 1 of a distance relay typically set to only 80-90% of the protected line rather than 100%?",
+    options: [
+      "To save on relay hardware cost",
+      "To deliberately underreach and avoid any risk of overreaching into the next line section, which would be a security failure",
+      "Because CTs cannot measure beyond 90% of a line",
+      "Because Zone 1 is always the slowest zone",
+    ],
+    correctIndex: 1,
+    explanation: "Zone 1 deliberately underreaches to guarantee it never overreaches into the adjacent line section given measurement tolerances, since an overreach would be a security failure, tripping for a fault not actually on the protected line.",
+  },
+  {
+    id: "q-047",
+    topicSlug: "overcurrent-distance-protection",
+    question: "What is the purpose of a pilot (communication-assisted) protection scheme on a transmission line?",
+    options: [
+      "To allow both line ends to trip instantaneously for a fault anywhere on the entire line, overcoming the inherent delay of stepped zones for far-end faults",
+      "To eliminate the need for any local protection at the line terminals",
+      "To replace CTs and VTs with communication signals",
+      "To provide voltage regulation along the line",
+    ],
+    correctIndex: 0,
+    explanation: "Pilot schemes (POTT, PUTT, DCB) use a communication channel between line terminals so both ends can trip instantaneously for any fault on the line, avoiding the delay inherent to relying on stepped Zone 2/3 for far-end faults.",
+  },
+
+  // ---- differential-bus-protection (3) ----
+  {
+    id: "q-048",
+    topicSlug: "differential-bus-protection",
+    question: "Why can differential (unit) protection trip instantaneously without needing to coordinate with other relays?",
+    options: [
+      "Because its protected zone is precisely bounded by CT locations, so it is inherently unaffected by conditions outside that zone",
+      "Because it doesn't use CTs at all",
+      "Because it always trips slower than overcurrent protection",
+      "Because it can only be used on distribution feeders",
+    ],
+    correctIndex: 0,
+    explanation: "Differential protection's zone boundary is precisely defined by CT locations, so it only responds to faults strictly within that zone and needs no coordination margin to avoid overreaching adjacent zones.",
+  },
+  {
+    id: "q-049",
+    topicSlug: "differential-bus-protection",
+    question: "What phenomenon does second-harmonic restraint in transformer differential protection guard against?",
+    options: [
+      "External bus faults",
+      "Magnetizing inrush current during transformer energization, which is rich in second-harmonic content",
+      "CT saturation during heavy through-faults",
+      "Loss of communication channel",
+    ],
+    correctIndex: 1,
+    explanation: "Transformer inrush current, which occurs during energization and can look like an internal fault by magnitude alone, is rich in second-harmonic content; second-harmonic restraint blocks tripping when this signature is detected.",
+  },
+  {
+    id: "q-050",
+    topicSlug: "differential-bus-protection",
+    question: "What is the purpose of using a high relay-circuit impedance in a high-impedance bus differential scheme?",
+    options: [
+      "To increase the relay's sensitivity to normal load current",
+      "So that CT saturation during an external fault drives voltage down rather than producing a false differential trip signal",
+      "To reduce the cost of CTs required",
+      "To allow the scheme to share CTs with unrelated protection functions",
+    ],
+    correctIndex: 1,
+    explanation: "High-impedance schemes are designed so that, during heavy external faults where CT saturation error could otherwise sum across many circuits, the high circuit impedance causes voltage to drop rather than current to falsely indicate an internal fault.",
+  },
+
+  // ---- protection-coordination-arc-flash (3) ----
+  {
+    id: "q-051",
+    topicSlug: "protection-coordination-arc-flash",
+    question: "What is the typical Coordination Time Interval (CTI) used between adjacent protective devices?",
+    options: ["0.01-0.05 seconds", "0.2-0.4 seconds", "2-4 seconds", "20-40 seconds"],
+    correctIndex: 1,
+    explanation: "CTI is typically 0.2-0.4 seconds between electromechanical/older relays, providing margin for relay/CT error while ensuring the downstream device operates first.",
+  },
+  {
+    id: "q-052",
+    topicSlug: "protection-coordination-arc-flash",
+    question: "Why is protection clearing time considered the most controllable variable in reducing arc flash incident energy?",
+    options: [
+      "Because fault current and equipment configuration are also easy to change on demand",
+      "Because incident energy depends on arc duration, and protection settings can often be adjusted, unlike fixed system fault current or equipment layout",
+      "Because clearing time has no actual effect on incident energy",
+      "Because IEEE 1584 ignores clearing time in its calculations",
+    ],
+    correctIndex: 1,
+    explanation: "Incident energy depends on fault current, arc duration (clearing time), working distance, and configuration; of these, clearing time is most directly controllable through protection settings, making it the primary lever for reducing hazard.",
+  },
+  {
+    id: "q-053",
+    topicSlug: "protection-coordination-arc-flash",
+    question: "Why can a lower-magnitude arcing fault sometimes produce higher arc flash incident energy than a higher-magnitude bolted fault?",
+    options: [
+      "Because incident energy is unrelated to fault current",
+      "Because a lower-current arcing fault may not trip a fast instantaneous element, resulting in a longer inverse-time clearing duration",
+      "Because arc flash studies only consider bolted three-phase faults",
+      "Because lower current always means higher incident energy by definition",
+    ],
+    correctIndex: 1,
+    explanation: "Since inverse-time protection clears faster at higher current, a lower-magnitude arcing fault can fail to trip a fast instantaneous element and instead clear on a slower inverse-time curve, producing a longer duration and potentially higher incident energy despite lower current.",
+  },
+
+  // ---- wind-power-integration (3) ----
+  {
+    id: "q-054",
+    topicSlug: "wind-power-integration",
+    question: "What distinguishes a Type 3 (DFIG) wind turbine from a Type 4 (full-converter) wind turbine?",
+    options: [
+      "Type 3 uses a full-scale converter rated for the entire turbine output; Type 4 uses a partial-scale converter",
+      "Type 3 uses a partial-scale converter connected to the rotor while the stator connects directly to the grid; Type 4 uses a full-scale converter decoupling the generator entirely",
+      "Type 3 and Type 4 are functionally identical",
+      "Type 3 has no power electronics at all",
+    ],
+    correctIndex: 1,
+    explanation: "DFIG (Type 3) uses a partial-scale converter (about 25-30% of rating) on the rotor circuit while the stator connects directly to the grid; Type 4 uses a full-scale converter for the entire output, fully decoupling generator behavior from the grid.",
+  },
+  {
+    id: "q-055",
+    topicSlug: "wind-power-integration",
+    question: "What protects a DFIG's rotor-side converter from destructive overcurrent during a nearby voltage dip?",
+    options: [
+      "A crowbar circuit or DC chopper",
+      "A tap changer",
+      "A surge arrester on the stator terminals",
+      "Increasing the wind turbine blade pitch angle",
+    ],
+    correctIndex: 0,
+    explanation: "A nearby voltage dip drives large transient rotor current in a DFIG since the stator is directly grid-connected; a crowbar circuit (or DC chopper in modern designs) protects the rotor-side converter from this overcurrent.",
+  },
+  {
+    id: "q-056",
+    topicSlug: "wind-power-integration",
+    question: "What is Low-Voltage Ride-Through (LVRT), and why do modern grid codes require it?",
+    options: [
+      "A requirement that turbines trip instantly on any voltage dip",
+      "A requirement that turbines remain connected and actively support voltage during a defined voltage sag, since mass tripping could worsen a system disturbance",
+      "A requirement that reduces wind turbine efficiency",
+      "A cybersecurity requirement for wind plant SCADA systems",
+    ],
+    correctIndex: 1,
+    explanation: "LVRT requires turbines to stay connected and, per most modern codes, actively supply reactive current during a defined voltage sag, since older practice (tripping offline) risked mass tripping worsening a system disturbance.",
+  },
+
+  // ---- solar-pv-integration (3) ----
+  {
+    id: "q-057",
+    topicSlug: "solar-pv-integration",
+    question: "Why does high PV penetration increase the rate of change of frequency (RoCoF) following a generation-load imbalance?",
+    options: [
+      "PV inverters actively increase RoCoF on purpose",
+      "PV plants have no rotating mass, reducing total system inertia available to resist frequency change",
+      "PV plants always operate at leading power factor",
+      "RoCoF is unrelated to inertia",
+    ],
+    correctIndex: 1,
+    explanation: "PV inverters have no rotating mass to draw kinetic energy from during a disturbance, unlike synchronous generators; displacing synchronous generation with PV reduces total system inertia, increasing RoCoF for a given imbalance.",
+  },
+  {
+    id: "q-058",
+    topicSlug: "solar-pv-integration",
+    question: "What limits a PV inverter's reactive power capability at high active power output?",
+    options: [
+      "Reactive capability is unlimited regardless of active power output",
+      "Real and reactive current together cannot exceed the inverter's total current/MVA rating, so reactive headroom shrinks as active output rises",
+      "Reactive power is generated separately from the inverter by a synchronous condenser",
+      "PV inverters cannot produce reactive power under any conditions",
+    ],
+    correctIndex: 1,
+    explanation: "An inverter's total current output is limited by its MVA rating; since real and reactive current share that same current budget, available reactive headroom decreases as active power output approaches the rating.",
+  },
+  {
+    id: "q-059",
+    topicSlug: "solar-pv-integration",
+    question: "What is 'momentary cessation' in a PV inverter, and why do modern grid codes increasingly disallow it?",
+    options: [
+      "A design where the inverter stops injecting current during a severe voltage sag rather than actively supporting voltage, which can worsen a voltage event if many plants do it simultaneously",
+      "A scheduled daily maintenance shutdown",
+      "A required behavior for all new inverters",
+      "A method for improving harmonic performance",
+    ],
+    correctIndex: 0,
+    explanation: "Momentary cessation stops current injection during a severe sag rather than actively supporting voltage; widespread simultaneous momentary cessation across many plants during a system disturbance can itself worsen the voltage event, so updated grid codes increasingly require active ride-through instead.",
+  },
+
+  // ---- energy-storage-systems (3) ----
+  {
+    id: "q-060",
+    topicSlug: "energy-storage-systems",
+    question: "For a battery energy storage system, what does 'duration' refer to?",
+    options: ["The battery's expected calendar lifespan in years", "The ratio of energy rating (MWh) to power rating (MW)", "The time required to fully recharge from empty", "The round-trip efficiency"],
+    correctIndex: 1,
+    explanation: "Duration (hours) = MWh/MW is the ratio of energy to power rating, a key design choice driven by intended application (short duration for fast regulation services, longer duration for energy shifting).",
+  },
+  {
+    id: "q-061",
+    topicSlug: "energy-storage-systems",
+    question: "Why is a battery energy storage system a particularly natural candidate for grid-forming inverter operation compared to a PV plant?",
+    options: [
+      "Batteries can both charge and discharge and are not constrained by an intermittent primary energy source like solar irradiance",
+      "Batteries are cheaper than PV inverters",
+      "PV plants cannot use inverters at all",
+      "Grid-forming operation is only possible with lithium-ion chemistry",
+    ],
+    correctIndex: 0,
+    explanation: "Unlike PV, which is limited by available irradiance, batteries can charge and discharge on demand, making them a more natural fit for grid-forming operation that provides synthetic inertia and voltage-source behavior.",
+  },
+  {
+    id: "q-062",
+    topicSlug: "energy-storage-systems",
+    question: "What is the primary safety hazard associated with lithium-ion battery energy storage systems?",
+    options: ["Corona discharge", "Thermal runaway, a self-sustaining exothermic reaction that can propagate between cells", "Ferroresonance", "Excessive harmonic distortion"],
+    correctIndex: 1,
+    explanation: "Thermal runaway is the primary lithium-ion safety hazard, mitigated through BMS monitoring, cell/module spacing, fire suppression, and standards like NFPA 855.",
+  },
+
+  // ---- grid-codes-interconnection (3) ----
+  {
+    id: "q-063",
+    topicSlug: "grid-codes-interconnection",
+    question: "What is the purpose of the system impact study phase in the generator interconnection process?",
+    options: [
+      "To calculate the developer's construction schedule only",
+      "To perform detailed load flow, short-circuit, and stability analysis of the specific interconnection point, identifying any required system upgrades",
+      "To determine the plant's expected energy revenue",
+      "To assign the plant's ANSI device numbers",
+    ],
+    correctIndex: 1,
+    explanation: "The system impact study is where load flow, short-circuit, and stability studies are applied to the specific proposed interconnection to identify required upgrades, distinct from the earlier coarse feasibility study and later detailed facilities study.",
+  },
+  {
+    id: "q-064",
+    topicSlug: "grid-codes-interconnection",
+    question: "Why did real-world disturbance events involving unexpected mass tripping of solar plants drive updates to grid codes like IEEE 1547?",
+    options: [
+      "They revealed that generic or unvalidated inverter models had significantly understated real-world ride-through and control interaction risks",
+      "They showed solar plants have no impact on grid reliability",
+      "They proved ride-through requirements were unnecessary",
+      "They were unrelated to inverter modeling or control behavior",
+    ],
+    correctIndex: 0,
+    explanation: "Several real disturbance events showed correlated, unexpected mass tripping or power reduction of inverter-based plants during system faults, revealing that early grid codes and generic models had understated real-world ride-through and control-interaction risk, driving standards revisions.",
+  },
+  {
+    id: "q-065",
+    topicSlug: "grid-codes-interconnection",
+    question: "What is anti-islanding protection, and why is it required for distribution-connected generation?",
+    options: [
+      "Protection that detects loss of grid connection and disconnects the generator to protect utility workers and avoid out-of-sync reclosing",
+      "Protection against lightning strikes on remote islands",
+      "A requirement only for offshore wind plants",
+      "A scheme to keep the generator connected regardless of grid status",
+    ],
+    correctIndex: 0,
+    explanation: "Anti-islanding protection detects when a distribution-connected generator has become isolated from the main grid (islanded) and disconnects it, protecting utility line workers from unexpected backfeed and avoiding out-of-sync reclosing damage.",
+  },
+];

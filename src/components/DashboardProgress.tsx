@@ -1,28 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { getCompletedLessons, getQuizHistory } from "@/lib/progress";
+import { useSyncExternalStore } from "react";
+import { getCompletedLessons, getQuizHistory, subscribeToProgress } from "@/lib/progress";
+
+function getCompletedCount() {
+  return getCompletedLessons().size;
+}
+
+function getQuizzesTakenCount() {
+  return getQuizHistory().length;
+}
+
+function getAvgScorePct() {
+  const history = getQuizHistory();
+  if (history.length === 0) return 0;
+  const pct = history.reduce((sum, a) => sum + a.score / a.total, 0) / history.length;
+  return Math.round(pct * 100);
+}
 
 export default function DashboardProgress({ totalLessons }: { totalLessons: number }) {
-  const [completed, setCompleted] = useState(0);
-  const [quizzesTaken, setQuizzesTaken] = useState(0);
-  const [avgScore, setAvgScore] = useState<number | null>(null);
-
-  useEffect(() => {
-    const refresh = () => {
-      setCompleted(getCompletedLessons().size);
-      const history = getQuizHistory();
-      setQuizzesTaken(history.length);
-      if (history.length > 0) {
-        const pct =
-          history.reduce((sum, a) => sum + a.score / a.total, 0) / history.length;
-        setAvgScore(Math.round(pct * 100));
-      }
-    };
-    refresh();
-    window.addEventListener("pel:progress-updated", refresh);
-    return () => window.removeEventListener("pel:progress-updated", refresh);
-  }, []);
+  const completed = useSyncExternalStore(subscribeToProgress, getCompletedCount, () => 0);
+  const quizzesTaken = useSyncExternalStore(subscribeToProgress, getQuizzesTakenCount, () => 0);
+  const avgScore = useSyncExternalStore(subscribeToProgress, getAvgScorePct, () => 0);
 
   const pct = totalLessons > 0 ? Math.round((completed / totalLessons) * 100) : 0;
 
