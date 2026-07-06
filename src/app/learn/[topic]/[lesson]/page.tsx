@@ -4,6 +4,8 @@ import { getLesson, getAllLessons, getTopic, getLessonsForTopic } from "@/lib/db
 import Markdown from "@/components/Markdown";
 import LessonCompleteToggle from "@/components/LessonCompleteToggle";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return getAllLessons().map((l) => ({ topic: l.topic_slug, lesson: l.slug }));
 }

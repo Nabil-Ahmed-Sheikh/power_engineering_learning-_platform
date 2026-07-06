@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { getTool, getTools } from "@/lib/db";
 import Markdown from "@/components/Markdown";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return getTools().map((t) => ({ tool: t.slug }));
 }
