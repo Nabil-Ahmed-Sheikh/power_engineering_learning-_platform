@@ -27,13 +27,23 @@ for interviews — built with Next.js and SQLite.
 
 ```bash
 npm install
-npm run seed    # builds data/learning.db from src/content/*
 npm run dev     # http://localhost:3000
 ```
 
-`npm run build` re-runs the seed step automatically (via the `prebuild`
-script) so the database is always generated fresh from the content source
-files in `src/content/`.
+Both `npm run dev` and `npm run build` automatically run the seed step
+first (via the `predev`/`prebuild` scripts), so the SQLite database is
+always generated fresh from the content source files in `src/content/`.
+You can also run it manually with `npm run seed`.
+
+## Tests
+
+```bash
+npm test
+```
+
+Runs the vitest suite: content integrity checks (unique slugs/ids, valid
+cross-references, well-formed quiz questions) and an integration test of
+the seed → SQLite → query pipeline.
 
 ## How data is stored
 

@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { getTopic, getTopics, getLessonsForTopic } from "@/lib/db";
 import { CATEGORY_META } from "@/lib/categories";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return getTopics().map((t) => ({ topic: t.slug }));
 }

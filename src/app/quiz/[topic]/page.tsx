@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { getTopic, getTopics, getQuizQuestionsForTopic } from "@/lib/db";
 import QuizRunner from "@/components/QuizRunner";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return getTopics().map((t) => ({ topic: t.slug }));
 }

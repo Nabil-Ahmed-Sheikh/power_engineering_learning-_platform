@@ -56,7 +56,14 @@ let db: Database.Database | null = null;
 export function getDb(): Database.Database {
   if (db) return db;
   const dbPath = path.join(process.cwd(), "data", "learning.db");
-  db = new Database(dbPath, { readonly: true, fileMustExist: true });
+  try {
+    db = new Database(dbPath, { readonly: true, fileMustExist: true });
+  } catch (err) {
+    throw new Error(
+      `SQLite database not found at ${dbPath}. Run \`npm run seed\` to generate it from src/content/*.`,
+      { cause: err }
+    );
+  }
   return db;
 }
 
