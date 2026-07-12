@@ -1,4 +1,4 @@
-# Power Engineering Lab
+# Power Engineering Lab 
 
 A self-study platform for learning power systems engineering and preparing
 for interviews — built with Next.js and SQLite.
